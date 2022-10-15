@@ -33,20 +33,14 @@ class SplashScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  child: Icon(
-                    Icons.mic_none_rounded,
-                    color: Colors.white,
-                  ),
+                  child: Image.asset("assets/micro.png"),
                   decoration: BoxDecoration(
                       color: Color(0xFF555E78), shape: BoxShape.circle),
                   width: 50.w,
                   height: 50.h,
                 ),
                 Container(
-                  child: Icon(
-                    Icons.edit,
-                    color: Colors.white,
-                  ),
+                  child: Image.asset("assets/Vector.png"),
                   decoration: BoxDecoration(
                       color: Color(0xFF555E78), shape: BoxShape.circle),
                   width: 50.w,
