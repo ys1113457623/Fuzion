@@ -1,5 +1,5 @@
                                                              
-                                                             # Fuzion
+# Fuzion
 
 # Problem Statement 🤔
 
