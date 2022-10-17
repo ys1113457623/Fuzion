@@ -4,6 +4,8 @@ import 'package:fuzion/splash_screen.dart';
 import 'package:fuzion/text_screen.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
+import 'audio.dart';
+
 void main() {
   runApp(const MyApp());
 }
