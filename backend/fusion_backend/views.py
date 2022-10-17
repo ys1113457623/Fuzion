@@ -1,4 +1,3 @@
-from cgitb import text
 from django.http import HttpResponse
 
 import text.views as text
