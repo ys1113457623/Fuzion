@@ -19,7 +19,7 @@ class KeyBoard extends StatelessWidget {
       child: Row(
         children: <Widget>[
           SizedBox(
-            width: 15,
+            width: 15.w,
           ),
           Expanded(
             child: TextField(
@@ -30,7 +30,7 @@ class KeyBoard extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 15,
+            width: 15.w,
           ),
           ClipOval(
             child: Container(
