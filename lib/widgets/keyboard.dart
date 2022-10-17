@@ -41,7 +41,7 @@ class _KeyBoardState extends State<KeyBoard> {
             ),
           ),
           SizedBox(
-            width: 20.w,
+            width: 15.w,
           ),
           GestureDetector(
             onLongPress: toggleRecording,

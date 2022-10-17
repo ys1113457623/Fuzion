@@ -41,7 +41,8 @@ dependencies:
   flutter_screenutil: ^5.5.4
   speech_to_text: ^6.0.0
   flutter_tts: ^3.5.3
-  avatar_glow: ^2.0.2
+  voice_message_package: ^0.0.74
+
 
 dev_dependencies:
   flutter_test:
