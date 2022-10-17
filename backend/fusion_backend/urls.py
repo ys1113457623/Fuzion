@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from fusion_backend.views import hello
+from fusion_backend.views import whichModel
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',hello),
-    path('text/',include("text.urls"))
+    path('',whichModel)
 ]
