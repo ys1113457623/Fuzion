@@ -1,5 +1,6 @@
 from typing import List
 import replicate 
+
 class StableDiffusion:
     def __init__(self) -> None:
         self.model = replicate.models.get("stability-ai/stable-diffusion")
@@ -19,7 +20,7 @@ class DalleMini:
 if __name__ == "__main__":
     sd = StableDiffusion()
     dm = DalleMini()
-    prompt = "a group of four toy cars sitting next to each other, an album cover by Tomokazu Matsuyama, featured on dribble, toyism, 2d game art, stock photo, stockphoto"
+    prompt = "a majestic tower in a field of flowers landscape by"
     res2 = dm.make_image(prompt)
     res = sd.make_image(prompt)
     print(res)

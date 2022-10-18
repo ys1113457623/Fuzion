@@ -20,6 +20,7 @@ whitenoise = "==6.2.0"
 replicate = "*"
 python-dotenv = "*"
 openai = "*"
+pillow = "*"
 
 [dev-packages]
 
