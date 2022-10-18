@@ -1,7 +1,7 @@
-import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fuzion/widgets/img_upload.dart';
 
 import '../models/speech_model.dart';
 
@@ -33,6 +33,7 @@ class _KeyBoardState extends State<KeyBoard> {
             width: 15.w,
           ),
           const Expanded(
+            // child: ImgUploadButton(),
             child: TextField(
               decoration: InputDecoration(
                   hintText: "Ask something.....",
