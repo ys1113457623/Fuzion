@@ -412,7 +412,14 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.4"
+    version: "2.1.2"
+  voice_message_package:
+    dependency: "direct main"
+    description:
+      name: voice_message_package
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.74"
   win32:
     dependency: transitive
     description:
