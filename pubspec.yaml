@@ -42,6 +42,9 @@ dependencies:
   speech_to_text: ^6.0.0
   flutter_tts: ^3.5.3
   voice_message_package: ^0.0.74
+  permission_handler:
+  image_picker: 
+
 
 dev_dependencies:
   flutter_test:
