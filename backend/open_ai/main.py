@@ -1,10 +1,7 @@
 import json
-from multiprocessing.resource_sharer import stop
 import openai
 import requests
-
 from dotenv import load_dotenv
-from pathlib import Path
 import os
 
 
@@ -228,7 +225,7 @@ if __name__ == "__main__":
     DT = DavinciTasks()
     product = "Naruto Uzumaki is a twelve-year-old ninja living in the Hidden Leaf Village under harsh ridicule from the villagers, having defaced a monument dedicated to the four Hokage leaders out of a need for acknowledgement. Naruto's teacher Iruka Umino reprimands Naruto for putting graffiti on each face statues, later hearing Naruto's aspirations of becoming Hokage to become respected by the villages. The following day, being held back from graduating the Ninja Academy after a botched clone jutsu, Naruto is tricked by an academy teacher named Mizuki into stealing a scroll containing the secret ninjutsu from the Third Hokage Hiruzen Sarutobi that night. Iruka intercepts Naruto as Mizuki was going to kill the boy and leave the village with the stolen scroll. Mizuki then reveals to Naruto that villagers were ordered not to reveal him as a host to a demon fox called the Nine Tails which devastated their village twelve years ago. Mizuki explains this to be the reasoning Naruto is hated, adding that Iruka's parents were killed by the Nine Tails. But a remorseful Iruka protects Naruto while telling the boy they have a lot in common, spurring Naruto to use the Shadow Clone jutsu he learned from the scroll to overwhelm Mizuki. Soon after Iruka uses Naruto's ability to use shadow clones to justify his graduation from the Ninja Academy."
     # print(DT.ad_copy_creation(product))
-    print(DT.generateCaption("https://upload.wikimedia.org/wikipedia/en/3/3b/Narutofirstdvd.jpg"))
+    print(DT.generateCaption("https://images.unsplash.com/photo-1666032234128-abc3e45bd1dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"))
      
 
             

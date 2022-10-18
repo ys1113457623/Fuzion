@@ -1,8 +1,5 @@
-import json
 import openai
-import requests
 from dotenv import load_dotenv
-from pathlib import Path
 import os
 
 
@@ -82,7 +79,7 @@ class DavinciConversation:
 
 if __name__ == "__main__":
     DC = DavinciConversation()
-    prompt = "Should I approach a girl is she is in a relationship? but her boyfriend is super toxic and is cheating on her in secret"
+    prompt = "My Wife told me I should do lunges to stay in shame, but I don't want to, Should I do?"
     print(DC.emulate_a_friend(prompt))
     print(DC.chat_with_ai(prompt))
     print(DC.sassy_chat(prompt))
