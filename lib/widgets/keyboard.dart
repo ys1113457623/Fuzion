@@ -1,10 +1,20 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class KeyBoard extends StatelessWidget {
+import '../models/speech_model.dart';
+
+class KeyBoard extends StatefulWidget {
   const KeyBoard({Key? key}) : super(key: key);
 
+  @override
+  State<KeyBoard> createState() => _KeyBoardState();
+}
+
+class _KeyBoardState extends State<KeyBoard> {
+  String text = 'Press the button and start speaking';
+  bool isListening = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,11 +27,12 @@ class KeyBoard extends StatelessWidget {
       height: 50.h,
       width: 327.w,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           SizedBox(
             width: 15.w,
           ),
-          Expanded(
+          const Expanded(
             child: TextField(
               decoration: InputDecoration(
                   hintText: "Ask something.....",
@@ -32,17 +43,41 @@ class KeyBoard extends StatelessWidget {
           SizedBox(
             width: 15.w,
           ),
-          ClipOval(
-            child: Container(
-              child: Image.asset("assets/micro.png"),
-              decoration: BoxDecoration(
-                  color: Color(0xFF555E78), shape: BoxShape.circle),
-              width: 50.w,
-              height: 50.h,
+          GestureDetector(
+            onLongPress: toggleRecording,
+            child: ClipOval(
+              child: Container(
+                child: !isListening
+                    ? Icon(Icons.mic)
+                    : Icon(
+                        Icons.mic,
+                        color: Colors.white,
+                      ),
+                decoration: BoxDecoration(
+                    color: isListening
+                        ? Colors.red.withOpacity(0.4)
+                        : Color(0xFF555E78),
+                    shape: BoxShape.circle),
+                width: 50.w,
+                height: 50.h,
+              ),
             ),
           )
         ],
       ),
     );
   }
+
+  Future toggleRecording() => SpeechApi.toggleRecording(
+        onResult: (text) => setState(() => this.text = text),
+        onListening: (isListening) {
+          setState(() => this.isListening = isListening);
+
+          if (!isListening) {
+            Future.delayed(Duration(seconds: 1), () {
+              print(text);
+            });
+          }
+        },
+      );
 }
