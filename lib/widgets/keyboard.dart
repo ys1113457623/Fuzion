@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +17,7 @@ class _KeyBoardState extends State<KeyBoard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20.h),
+      margin: EdgeInsets.only(bottom: 20.h,left: 17.w,right: 18.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(30.sp),
@@ -24,7 +25,8 @@ class _KeyBoardState extends State<KeyBoard> {
         color: const Color(0xFF3D4354),
       ),
       height: 50.h,
-      width: 327.w,
+      // width: 327.w,
+
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -34,9 +36,12 @@ class _KeyBoardState extends State<KeyBoard> {
           const Expanded(
             // child: ImgUploadButton(),
             child: TextField(
+              style: TextStyle(color: Colors.white),
+              autocorrect: false,
               decoration: InputDecoration(
                   hintText: "Ask something.....",
                   hintStyle: TextStyle(color: Colors.white),
+                  
                   border: InputBorder.none),
             ),
           ),
@@ -80,7 +85,9 @@ class _KeyBoardState extends State<KeyBoard> {
 
           if (!isListening) {
             Future.delayed(const Duration(seconds: 1), () {
-              print(text);
+              if (kDebugMode) {
+                print(text);
+              }
             });
           }
         },
