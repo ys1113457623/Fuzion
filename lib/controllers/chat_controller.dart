@@ -14,7 +14,7 @@ class ChatController extends GetxController {
     print(text);
     var headers = {
       'Content-Type': 'application/json',
-      'Authorization':'Bearer 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',
+      'Authorization':'Bearer ',
     };
 
     var data =
@@ -30,7 +30,7 @@ class ChatController extends GetxController {
     Map<String, dynamic> res2 =
         Map<String, dynamic>.from(json.decode(res.body));
     String result = res2['choices'][0]['text'];
-    chat.value.addResponse(result.replaceAll('\n', ''));
+    chat.value.addResponse(result);
     update();
 
   }

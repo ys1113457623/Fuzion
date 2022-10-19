@@ -16,61 +16,72 @@ ChatController controller = Get.put(ChatController());
       body: SingleChildScrollView(
         child: Container(
           height: 812.h,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const TopButton(),
-              GetBuilder<ChatController>(builder: (controller) {
-                return Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ...controller.chat.value.chat.map((element) {
-                        if (element.containsKey("Link")) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(16.sp),
-                                ),
-                                child: Container(
-                                  width: 325.w,
-                                  height: 310.h,
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFF3D4354),
+              Padding(
+padding: EdgeInsets.only(bottom: 60.h),
+                child: SingleChildScrollView(
+                  reverse: true,
+                  child: GetBuilder<ChatController>(builder: (controller) {
+                    return Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ...controller.chat.value.chat.map((element) {
+                            if (element.containsKey("Link")) {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(16.sp),
+                                    ),
+                                    child: Container(
+                                      width: 325.w,
+                                      height: 310.h,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFF3D4354),
+                                      ),
+                                      child: Image.network(
+                                        element["Link"]!,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
-                                  child: Image.network(
-                                    element["Link"]!,
-                                    fit: BoxFit.cover,
+                                  UserInputText(text: element["You"]!),
+                                  ReplyFromBot(text: element["Bot"]!),
+                                  SizedBox(
+                                    height: 20.h,
                                   ),
-                                ),
-                              ),
-                              UserInputText(text: element["You"]!),
-                              ReplyFromBot(text: element["Bot"]!),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              UserInputText(text: text),
-                            ],
-                          );
-                        }
-                        return Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              UserInputText(text: element['You']!),
-                              if (element.containsKey("Bot"))
-                                ReplyFromBot(text: element["Bot"]!)
-
-
-
-                            ],
-                          );
-                        // return Container();
-                      }),
+                                  UserInputText(text: text),
+                                ],
+                              );
+                            }
+                            return Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  UserInputText(text: element['You']!),
+                                  if (element.containsKey("Bot"))
+                                    ReplyFromBot(text: element["Bot"]!)
+                
+                
+                
+                                ],
+                              );
+                            // return Container();
+                          }),
+                        ]
+                        );
+                  }),
+                ),
+              ),
                       KeyBoard()
-                    ]);
-              }),
+            
+            
+            
             ],
+          
           ),
         ),
       ),
