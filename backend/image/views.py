@@ -32,14 +32,14 @@ def ObjectDetection(request):
     
     return JsonResponse(response,safe=False)
 
-def imageCaption(request):
-    query = request.GET.get('query','')
+def imageDescription(request):
+    query = request
     API_URL = "https://api-inference.huggingface.co/models/nlpconnect/vit-gpt2-image-captioning"
     response = requests.get(query)
-    data = Image.open(BytesIO(response.content))
+    # data = Image.open(BytesIO(response.content))
     
         
-    response = requests.request("POST", API_URL, headers=headers, data=data)
+    response = requests.request("POST", API_URL, headers=headers, data=query)
     response = json.loads(response.content.decode("utf-8"))
     
     return JsonResponse(response,safe=False)

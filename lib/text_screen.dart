@@ -8,7 +8,7 @@ class TextScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff1C1F2A),
+      backgroundColor: const Color(0xff1C1F2A),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -21,21 +21,21 @@ class TextScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    child: Image.asset("assets/arrow.png"),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Color(0xFF555E78), shape: BoxShape.circle),
                     width: 50.w,
                     height: 50.h,
+                    child: Image.asset("assets/arrow.png"),
                   ),
                   Container(
+                    decoration: const BoxDecoration(
+                        color: Color(0xFF555E78), shape: BoxShape.circle),
+                    width: 50.w,
+                    height: 50.h,
                     child: Image.asset(
                       "assets/profile.png",
                       fit: BoxFit.contain,
                     ),
-                    decoration: BoxDecoration(
-                        color: Color(0xFF555E78), shape: BoxShape.circle),
-                    width: 50.w,
-                    height: 50.h,
                   )
                 ],
               ),
@@ -48,6 +48,14 @@ class TextScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.topRight,
                 child: Container(
+                  width: 260.w,
+                  height: 65.h,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFF7169E2),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16.sp),
+                          bottomLeft: Radius.circular(16.sp),
+                          topRight: Radius.circular(16.sp))),
                   child: Padding(
                     padding: EdgeInsets.all(8.sp),
                     child: Text(
@@ -59,14 +67,6 @@ class TextScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  width: 260.w,
-                  height: 65.h,
-                  decoration: BoxDecoration(
-                      color: Color(0xFF7169E2),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16.sp),
-                          bottomLeft: Radius.circular(16.sp),
-                          topRight: Radius.circular(16.sp))),
                 ),
               ),
             ),
@@ -75,6 +75,14 @@ class TextScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Container(
+                  width: 260.w,
+                  height: 65.h,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFF3D4354),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(16.sp),
+                          bottomRight: Radius.circular(16.sp),
+                          topRight: Radius.circular(16.sp))),
                   child: Padding(
                     padding: EdgeInsets.all(8.sp),
                     child: Text(
@@ -86,14 +94,6 @@ class TextScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  width: 260.w,
-                  height: 65.h,
-                  decoration: BoxDecoration(
-                      color: Color(0xFF3D4354),
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(16.sp),
-                          bottomRight: Radius.circular(16.sp),
-                          topRight: Radius.circular(16.sp))),
                 ),
               ),
             ),
@@ -101,7 +101,7 @@ class TextScreen extends StatelessWidget {
               width: 325.w,
               height: 310.h,
               decoration: BoxDecoration(
-                  color: Color(0xFF3D4354),
+                  color: const Color(0xFF3D4354),
                   borderRadius: BorderRadius.all(Radius.circular(16.sp))),
             ),
             SizedBox(
@@ -112,6 +112,14 @@ class TextScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.topRight,
                 child: Container(
+                  width: 282.w,
+                  height: 75.h,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFF7169E2),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16.sp),
+                          bottomLeft: Radius.circular(16.sp),
+                          topRight: Radius.circular(16.sp))),
                   child: Padding(
                     padding: EdgeInsets.all(8.sp),
                     child: Text(
@@ -123,18 +131,10 @@ class TextScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  width: 282.w,
-                  height: 75.h,
-                  decoration: BoxDecoration(
-                      color: Color(0xFF7169E2),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16.sp),
-                          bottomLeft: Radius.circular(16.sp),
-                          topRight: Radius.circular(16.sp))),
                 ),
               ),
             ),
-            KeyBoard()
+            const KeyBoard()
           ],
         ),
       ),
