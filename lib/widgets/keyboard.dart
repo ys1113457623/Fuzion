@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fuzion/widgets/img_upload.dart';
 
 import '../models/speech_model.dart';
 
