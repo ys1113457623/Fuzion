@@ -90,7 +90,14 @@ class _KeyBoardState extends State<KeyBoard> {
   }
 
   Future toggleRecording() => SpeechApi.toggleRecording(
-        onResult: (text) => setState(() => text = text),
+
+        onResult: ((text) {
+          setState(() {
+            this.text = text;
+          });
+        }),
+        // onResult: (text) => setState(() => this.text = text),
+
         onListening: (isListening) {
           setState(() => this.isListening = isListening);
 
