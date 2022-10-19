@@ -1,6 +1,7 @@
 class Chat {
   final List<Map<String, String>> chat;
   Chat({required this.chat});
+  
   bool addResponse(String response) {
     try {
       int len = chat.length;
