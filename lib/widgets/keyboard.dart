@@ -16,6 +16,7 @@ class _KeyBoardState extends State<KeyBoard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 20.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(30.sp),

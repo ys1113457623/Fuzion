@@ -62,7 +62,7 @@ class MotherShip:
                 return gpt3Conversation.emulate_a_friend(text['query']),result
         else:
             res =StableDiffusion().make_image(text['query'])
-            return res
+            return res,result
             
             
             

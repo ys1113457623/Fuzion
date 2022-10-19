@@ -44,6 +44,7 @@ dependencies:
   voice_message_package: ^0.0.74
   permission_handler:
   image_picker: 
+  flutter_staggered_grid_view: ^0.6.2
 
 
 dev_dependencies:
