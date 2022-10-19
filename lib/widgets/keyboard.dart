@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fuzion/widgets/img_upload.dart';
 
 import '../models/speech_model.dart';
 
@@ -18,11 +16,12 @@ class _KeyBoardState extends State<KeyBoard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 20.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(30.sp),
         ),
-        color: Color(0xFF3D4354),
+        color: const Color(0xFF3D4354),
       ),
       height: 50.h,
       width: 327.w,
@@ -48,19 +47,19 @@ class _KeyBoardState extends State<KeyBoard> {
             onLongPress: toggleRecording,
             child: ClipOval(
               child: Container(
-                child: !isListening
-                    ? Icon(Icons.mic)
-                    : Icon(
-                        Icons.mic,
-                        color: Colors.white,
-                      ),
                 decoration: BoxDecoration(
                     color: isListening
                         ? Colors.red.withOpacity(0.4)
-                        : Color(0xFF555E78),
+                        : const Color(0xFF555E78),
                     shape: BoxShape.circle),
                 width: 50.w,
                 height: 50.h,
+                child: !isListening
+                    ? const Icon(Icons.mic)
+                    : const Icon(
+                        Icons.mic,
+                        color: Colors.white,
+                      ),
               ),
             ),
           )
@@ -75,7 +74,7 @@ class _KeyBoardState extends State<KeyBoard> {
           setState(() => this.isListening = isListening);
 
           if (!isListening) {
-            Future.delayed(Duration(seconds: 1), () {
+            Future.delayed(const Duration(seconds: 1), () {
               print(text);
             });
           }

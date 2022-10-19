@@ -15,6 +15,7 @@ class BartLargeCNN:
     def query(self,payload):
         response = requests.post(self.API_URL, headers=self.headers, json=payload)
         reply= response.json()[0]
+        return reply
         
         
 
