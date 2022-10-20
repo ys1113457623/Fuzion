@@ -1,7 +1,7 @@
                                                              
 # Fuzion
 
-# Problem Statement 🤔
+## Problem Statement 🤔
 
 Create a safe space for non-tech people to explore AI without feeling like they need to be tech experts. Additionally, create opportunities for non-tech people to interact with AI to ask questions and gain insights into how AI can be used in their field. And showcase to them, what true state-of-the-art AI is capable of.
 
