@@ -1,58 +1,88 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:fuzion/controllers/chat_controller.dart';
 import 'package:fuzion/widgets/keyboard.dart';
+import 'package:get/get.dart';
+
 
 class TextScreen extends StatelessWidget {
-  const TextScreen({Key? key}) : super(key: key);
-
+   TextScreen({Key? key}) : super(key: key);
+ChatController controller = Get.put(ChatController());
   @override
   Widget build(BuildContext context) {
     var text = "Some text from user";
+
     return Scaffold(
       backgroundColor: const Color(0xff1C1F2A),
       body: SingleChildScrollView(
         child: Container(
-          height:812.h ,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          height: 812.h,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const TopButton(),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      
-                   
-                      UserInputText(text: text),
-                      ReplyFromBot(text: text),
-                      ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(16.sp),),
-                        
-                        child: Container(
-                          width: 325.w,
-                          height: 310.h,
-                          
-                          decoration: const BoxDecoration(
-                              color: Color(0xFF3D4354),
-                      ),
-
-
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      UserInputText(text: text),
-                    ],
-                  ),
-                  const KeyBoard()
-                ],
+              Padding(
+padding: EdgeInsets.only(bottom: 60.h),
+                child: SingleChildScrollView(
+                  reverse: true,
+                  child: GetBuilder<ChatController>(builder: (controller) {
+                    return Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ...controller.chat.value.chat.map((element) {
+                            if (element.containsKey("Link")) {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(16.sp),
+                                    ),
+                                    child: Container(
+                                      width: 325.w,
+                                      height: 310.h,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFF3D4354),
+                                      ),
+                                      child: Image.network(
+                                        element["Link"]!,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  UserInputText(text: element["You"]!),
+                                  ReplyFromBot(text: element["Bot"]!),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  UserInputText(text: text),
+                                ],
+                              );
+                            }
+                            return Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  UserInputText(text: element['You']!),
+                                  if (element.containsKey("Bot"))
+                                    ReplyFromBot(text: element["Bot"]!)
+                
+                
+                
+                                ],
+                              );
+                            // return Container();
+                          }),
+                        ]
+                        );
+                  }),
+                ),
               ),
+                      KeyBoard()
+            
+
             ],
+          
           ),
         ),
       ),
@@ -69,24 +99,23 @@ class TopButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pop(context);
+        Get.back();
       },
       child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.sp,vertical: 40.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                          color: Color(0xFF555E78), shape: BoxShape.circle),
-                      width: 50.w,
-                      height: 50.h,
-                      child: Image.asset("assets/arrow.png"),
-                    ),
-                    
-                  ],
-                ),
-              ),
+        padding: EdgeInsets.symmetric(horizontal: 16.sp, vertical: 40.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                  color: Color(0xFF555E78), shape: BoxShape.circle),
+              width: 50.w,
+              height: 50.h,
+              child: Image.asset("assets/arrow.png"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -106,9 +135,7 @@ class ReplyFromBot extends StatelessWidget {
       child: Align(
         alignment: Alignment.topLeft,
         child: Container(
-
-          constraints:                const BoxConstraints(minWidth: 100, maxWidth: 282),
-
+          constraints: const BoxConstraints(minWidth: 100, maxWidth: 282),
           decoration: BoxDecoration(
               color: const Color(0xFF3D4354),
               borderRadius: BorderRadius.only(
@@ -118,7 +145,7 @@ class ReplyFromBot extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8.sp),
             child: Text(
-text,
+              text,
               textAlign: TextAlign.left,
               style: TextStyle(
                   color: Colors.white,
@@ -147,8 +174,7 @@ class UserInputText extends StatelessWidget {
       child: Align(
         alignment: Alignment.topRight,
         child: Container(
-          constraints:
-              const BoxConstraints(minWidth: 100, maxWidth: 282),
+          constraints: const BoxConstraints(minWidth: 100, maxWidth: 282),
           // height: 75.h,
           padding: EdgeInsets.all(7.sp),
           decoration: BoxDecoration(
@@ -158,7 +184,7 @@ class UserInputText extends StatelessWidget {
                   bottomLeft: Radius.circular(16.sp),
                   topRight: Radius.circular(16.sp))),
           child: Text(
-text,
+            text,
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.white,

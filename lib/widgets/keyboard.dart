@@ -1,22 +1,27 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fuzion/controllers/chat_controller.dart';
+import 'package:get/get.dart';
 
 import '../models/speech_model.dart';
 
 class KeyBoard extends StatefulWidget {
-  const KeyBoard({Key? key}) : super(key: key);
+  KeyBoard({Key? key}) : super(key: key);
 
   @override
   State<KeyBoard> createState() => _KeyBoardState();
 }
 
 class _KeyBoardState extends State<KeyBoard> {
-  String text = 'Press the button and start speaking';
   bool isListening = false;
+  String text = "";
+
+  ChatController controller = Get.put(ChatController());
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20.h),
+      margin: EdgeInsets.only(bottom: 20.h, left: 17.w, right: 18.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(30.sp),
@@ -24,16 +29,32 @@ class _KeyBoardState extends State<KeyBoard> {
         color: const Color(0xFF3D4354),
       ),
       height: 50.h,
-      width: 327.w,
+      // width: 327.w,
+
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           SizedBox(
             width: 15.w,
           ),
-          const Expanded(
+          Expanded(
             // child: ImgUploadButton(),
             child: TextField(
+              onSubmitted: (value) async {
+               await controller.addText(value);
+               setState(() {
+                 text = "";
+               });
+               await controller.run_code(value);
+
+              },
+              onChanged: (value) {
+                setState(() {
+                  text = value;
+                });
+              },
+              style: const TextStyle(color: Colors.white),
+              autocorrect: false,
               decoration: InputDecoration(
                   hintText: "Ask something.....",
                   hintStyle: TextStyle(color: Colors.white),
@@ -69,13 +90,22 @@ class _KeyBoardState extends State<KeyBoard> {
   }
 
   Future toggleRecording() => SpeechApi.toggleRecording(
-        onResult: (text) => setState(() => this.text = text),
+
+        onResult: ((text) {
+          setState(() {
+            this.text = text;
+          });
+        }),
+        // onResult: (text) => setState(() => this.text = text),
+
         onListening: (isListening) {
           setState(() => this.isListening = isListening);
 
           if (!isListening) {
             Future.delayed(const Duration(seconds: 1), () {
-              print(text);
+              if (kDebugMode) {
+                print(text);
+              }
             });
           }
         },
