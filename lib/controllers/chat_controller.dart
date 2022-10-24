@@ -8,13 +8,13 @@ class ChatController extends GetxController {
   Rx<Chat> chat = Chat(chat: []).obs;
   RxBool contextNeeded = false.obs;
   RxBool lastMsgWasImage = false.obs;
-  RxBool lastSpoken = false.obs;
+  RxBool lastSpoken = false.obs;  
 
   Future<void> run_code(String text) async {
     print(text);
     var headers = {
       'Content-Type': 'application/json',
-      'Authorization':'Bearer ',
+      'Authorization': 'Bearer ',
     };
 
     var data =
