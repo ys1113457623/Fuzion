@@ -89,14 +89,17 @@ class _KeyBoardState extends State<KeyBoard> {
     );
   }
 
-  Future toggleRecording() => SpeechApi.toggleRecording(
+  Future toggleRecording() async => SpeechApi.toggleRecording(
 
         onResult: ((text) {
-          setState(() {
+          setState(() async {
             this.text = text;
+            controller.addText(text);
+            // controller.run_code(text);
           });
+          
         }),
-        // onResult: (text) => setState(() => this.text = text),
+        
 
         onListening: (isListening) {
           setState(() => this.isListening = isListening);
@@ -108,6 +111,7 @@ class _KeyBoardState extends State<KeyBoard> {
               }
             });
           }
+          
         },
       );
 }
