@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fuzion/env.dart';
 import 'package:fuzion/models/chat.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -14,7 +15,7 @@ class ChatController extends GetxController {
     print(text);
     var headers = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ',
+      'Authorization': 'Bearer ${Environemnt().authKey}',
     };
 
     var data =

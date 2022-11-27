@@ -95,7 +95,7 @@ class _KeyBoardState extends State<KeyBoard> {
           setState(() async {
             this.text = text;
             controller.addText(text);
-            // controller.run_code(text);
+            controller.run_code(text);
           });
           
         }),
