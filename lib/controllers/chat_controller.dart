@@ -14,7 +14,7 @@ class ChatController extends GetxController {
     print(text);
     var headers = {
       'Content-Type': 'application/json',
-      'Authorization':'Bearer ',
+      'Authorization':'Bearer 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',
     };
 
     var data =
@@ -29,7 +29,11 @@ class ChatController extends GetxController {
     //parse res.body as Map
     Map<String, dynamic> res2 =
         Map<String, dynamic>.from(json.decode(res.body));
-    String result = res2['choices'][0]['text'];
+    String result = res2['choices'][0]['text'].toString();
+    // find occurrence of first alphabet in result
+    int index = result.indexOf(RegExp(r'[a-zA-Z]'));
+    // remove everything before first alphabet
+    result = result.substring(index);
     chat.value.addResponse(result);
     update();
 
