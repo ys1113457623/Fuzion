@@ -3,12 +3,14 @@ import 'package:speech_to_text/speech_to_text.dart';
 
 class SpeechApi {
   static final _speech = SpeechToText();
+  
 
   static Future<bool> toggleRecording({
     required Function(String text) onResult,
     required ValueChanged<bool> onListening,
   }) async {
     if (_speech.isListening) {
+      
       _speech.stop();
       return true;
     }
@@ -19,9 +21,16 @@ class SpeechApi {
     );
 
     if (isAvailable) {
-      _speech.listen(onResult: (value) => onResult(value.recognizedWords));
+      _speech.listen(onResult: (value) {
+        if(value.finalResult){
+          onResult(value.recognizedWords);
+        }
+        
+        
+      } );
     }
-
+    
     return isAvailable;
   }
+  
 }

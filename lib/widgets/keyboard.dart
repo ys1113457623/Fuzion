@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../models/speech_model.dart';
 
 class KeyBoard extends StatefulWidget {
-  KeyBoard({Key? key}) : super(key: key);
+  const KeyBoard({Key? key}) : super(key: key);
 
   @override
   State<KeyBoard> createState() => _KeyBoardState();
@@ -55,7 +55,7 @@ class _KeyBoardState extends State<KeyBoard> {
               },
               style: const TextStyle(color: Colors.white),
               autocorrect: false,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: "Ask something.....",
                   hintStyle: TextStyle(color: Colors.white),
                   border: InputBorder.none),
@@ -89,8 +89,18 @@ class _KeyBoardState extends State<KeyBoard> {
     );
   }
 
-  Future toggleRecording() => SpeechApi.toggleRecording(
-        onResult: (text) => setState(() => text = text),
+  Future toggleRecording() async => SpeechApi.toggleRecording(
+
+        onResult: ((text) {
+          setState(() async {
+            this.text = text;
+            controller.addText(text);
+            controller.run_code(text);
+          });
+          
+        }),
+        
+
         onListening: (isListening) {
           setState(() => this.isListening = isListening);
 
@@ -101,6 +111,7 @@ class _KeyBoardState extends State<KeyBoard> {
               }
             });
           }
+          
         },
       );
 }

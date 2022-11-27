@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fuzion/env.dart';
 import 'package:fuzion/models/chat.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -8,13 +9,13 @@ class ChatController extends GetxController {
   Rx<Chat> chat = Chat(chat: []).obs;
   RxBool contextNeeded = false.obs;
   RxBool lastMsgWasImage = false.obs;
-  RxBool lastSpoken = false.obs;
+  RxBool lastSpoken = false.obs;  
 
   Future<void> run_code(String text) async {
     print(text);
     var headers = {
       'Content-Type': 'application/json',
-      'Authorization':'Bearer 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',
+      'Authorization':'Bearer ${Secret().env}',
     };
 
     var data =

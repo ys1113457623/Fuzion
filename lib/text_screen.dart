@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fuzion/controllers/chat_controller.dart';
 import 'package:fuzion/widgets/keyboard.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+
 
 class TextScreen extends StatelessWidget {
    TextScreen({Key? key}) : super(key: key);
@@ -11,10 +11,11 @@ ChatController controller = Get.put(ChatController());
   @override
   Widget build(BuildContext context) {
     var text = "Some text from user";
+
     return Scaffold(
       backgroundColor: const Color(0xff1C1F2A),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: 812.h,
           child: Stack(
             alignment: Alignment.bottomCenter,
@@ -76,10 +77,9 @@ padding: EdgeInsets.only(bottom: 60.h),
                   }),
                 ),
               ),
-                      KeyBoard()
+                      const KeyBoard()
             
-            
-            
+
             ],
           
           ),
@@ -98,7 +98,7 @@ class TopButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pop(context);
+        Get.back();
       },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.sp, vertical: 40.h),
