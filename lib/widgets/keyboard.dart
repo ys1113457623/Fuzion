@@ -16,6 +16,7 @@ class KeyBoard extends StatefulWidget {
 class _KeyBoardState extends State<KeyBoard> {
   bool isListening = false;
   String text = "";
+  var textController = TextEditingController();
 
   ChatController controller = Get.put(ChatController());
   @override
@@ -40,16 +41,19 @@ class _KeyBoardState extends State<KeyBoard> {
           Expanded(
             // child: ImgUploadButton(),
             child: TextField(
+              controller: textController,
+              textInputAction: TextInputAction.search,
               onSubmitted: (value) async {
                await controller.addText(value);
                setState(() {
-                 text = "";
+                 textController.clear();
                });
                await controller.run_code(value);
 
               },
               onChanged: (value) {
                 setState(() {
+                  print("A");
                   text = value;
                 });
               },

@@ -17,6 +17,7 @@ class ChatController extends GetxController {
       'Content-Type': 'application/json',
       'Authorization':'Bearer ${Secret().env}',
     };
+    print('Bearer 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');
 
     var data =
         '{"model": "text-davinci-002", "prompt": "$text", "temperature": 0, "max_tokens": 1500}';
