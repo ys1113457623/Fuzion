@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fuzion/controllers/chat_controller.dart';
@@ -16,7 +15,7 @@ ChatController controller = Get.put(ChatController());
     return Scaffold(
       backgroundColor: const Color(0xff1C1F2A),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: 812.h,
           child: Stack(
             alignment: Alignment.bottomCenter,
@@ -78,7 +77,7 @@ padding: EdgeInsets.only(bottom: 60.h),
                   }),
                 ),
               ),
-                      KeyBoard()
+                      const KeyBoard()
             
 
             ],

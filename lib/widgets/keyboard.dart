@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../models/speech_model.dart';
 
 class KeyBoard extends StatefulWidget {
-  KeyBoard({Key? key}) : super(key: key);
+  const KeyBoard({Key? key}) : super(key: key);
 
   @override
   State<KeyBoard> createState() => _KeyBoardState();
@@ -16,6 +16,7 @@ class KeyBoard extends StatefulWidget {
 class _KeyBoardState extends State<KeyBoard> {
   bool isListening = false;
   String text = "";
+  var textController = TextEditingController();
 
   ChatController controller = Get.put(ChatController());
   @override
@@ -40,22 +41,25 @@ class _KeyBoardState extends State<KeyBoard> {
           Expanded(
             // child: ImgUploadButton(),
             child: TextField(
+              controller: textController,
+              textInputAction: TextInputAction.search,
               onSubmitted: (value) async {
                await controller.addText(value);
                setState(() {
-                 text = "";
+                 textController.clear();
                });
                await controller.run_code(value);
 
               },
               onChanged: (value) {
                 setState(() {
+                  print("A");
                   text = value;
                 });
               },
               style: const TextStyle(color: Colors.white),
               autocorrect: false,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: "Ask something.....",
                   hintStyle: TextStyle(color: Colors.white),
                   border: InputBorder.none),
@@ -89,14 +93,17 @@ class _KeyBoardState extends State<KeyBoard> {
     );
   }
 
-  Future toggleRecording() => SpeechApi.toggleRecording(
+  Future toggleRecording() async => SpeechApi.toggleRecording(
 
         onResult: ((text) {
-          setState(() {
+          setState(() async {
             this.text = text;
+            controller.addText(text);
+            controller.run_code(text);
           });
+          
         }),
-        // onResult: (text) => setState(() => this.text = text),
+        
 
         onListening: (isListening) {
           setState(() => this.isListening = isListening);
@@ -108,6 +115,7 @@ class _KeyBoardState extends State<KeyBoard> {
               }
             });
           }
+          
         },
       );
 }

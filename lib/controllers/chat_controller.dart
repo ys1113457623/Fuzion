@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fuzion/env.dart';
 import 'package:fuzion/models/chat.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -8,14 +9,15 @@ class ChatController extends GetxController {
   Rx<Chat> chat = Chat(chat: []).obs;
   RxBool contextNeeded = false.obs;
   RxBool lastMsgWasImage = false.obs;
-  RxBool lastSpoken = false.obs;
+  RxBool lastSpoken = false.obs;  
 
   Future<void> run_code(String text) async {
     print(text);
     var headers = {
       'Content-Type': 'application/json',
-      'Authorization':'Bearer ',
+      'Authorization':'Bearer ${Secret().env}',
     };
+    print('Bearer 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');
 
     var data =
         '{"model": "text-davinci-002", "prompt": "$text", "temperature": 0, "max_tokens": 1500}';
@@ -29,7 +31,11 @@ class ChatController extends GetxController {
     //parse res.body as Map
     Map<String, dynamic> res2 =
         Map<String, dynamic>.from(json.decode(res.body));
-    String result = res2['choices'][0]['text'];
+    String result = res2['choices'][0]['text'].toString();
+    // find occurrence of first alphabet in result
+    int index = result.indexOf(RegExp(r'[a-zA-Z]'));
+    // remove everything before first alphabet
+    result = result.substring(index);
     chat.value.addResponse(result);
     update();
 
